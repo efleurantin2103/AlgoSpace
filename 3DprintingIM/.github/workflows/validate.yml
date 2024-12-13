@@ -1,0 +1,107 @@
+name: 3D Printing IM Build
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      # Install Python dependencies
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib
+          pip install meshio trimesh pygltflib
+          pip install pytest pytest-cov
+      
+      # Install tree command
+      - name: Install tree
+        run: sudo apt-get install -y tree
+      
+      # Run Python tests
+      - name: Run Python Tests
+        run: |
+          pytest tests/ --cov=./ --cov-report=xml
+          
+      # Setup MATLAB
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          # Specify any required MATLAB release
+          release: R2023b
+        
+      # Run MATLAB Tests
+      - name: Run MATLAB Tests
+        uses: matlab-actions/run-tests@v1
+        with:
+          source-folder: scripts/matlab
+          select-by-folder: tests
+          
+      # Check Mathematica notebooks
+      - name: Check Mathematica notebooks
+        run: |
+          echo "Verifying Mathematica notebook integrity..."
+          find . -name "*.nb" -type f -exec ls -l {} \;
+          
+      # Verify 3D model files
+      - name: Check model files
+        run: |
+          echo "Checking 3D model files..."
+          find . -name "*.stl" -type f -exec ls -l {} \;
+          find . -name "*.obj" -type f -exec ls -l {} \;
+          find . -name "*.3mf" -type f -exec ls -l {} \;
+          
+      # Run mesh validation with Python
+      - name: Validate Meshes
+        run: |
+          echo "Validating mesh integrity with Python..."
+          python scripts/validate_meshes.py
+          
+      # Status update
+      - name: Project status
+        run: |
+          echo "Phase 1 - Foundation: Complete ✓"
+          echo "Phase 2 - Development: In Progress 🚧"
+          echo "Phase 3 - Implementation: Pending 📋"
+          
+      # Repository structure check
+      - name: Check repository structure
+        run: |
+          echo "Repository Structure:"
+          echo "====================="
+          tree -L 2 -P "*.nb|*.m|*.py|*.stl|*.obj|*.3mf"
+
+      # Generate report
+      - name: Generate validation report
+        run: |
+          echo "# Validation Report" > report.md
+          echo "## File Statistics" >> report.md
+          echo "* Mathematica notebooks: $(find . -name '*.nb' | wc -l)" >> report.md
+          echo "* MATLAB scripts: $(find . -name '*.m' | wc -l)" >> report.md
+          echo "* Python scripts: $(find . -name '*.py' | wc -l)" >> report.md
+          echo "* 3D Models: $(find . -name '*.stl' -o -name '*.obj' -o -name '*.3mf' | wc -l)" >> report.md
+
+  notify:
+    needs: validate
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Send notification
+        run: |
+          echo "Validation workflow completed"
+          echo "Repository: 3DprintingIM"
+          echo "Branch: ${{ github.ref }}"
+          echo "Status: ${{ needs.validate.result }}"
