@@ -1,6 +1,6 @@
 # AlgoSpace
 
-Copyright (C) 2024 Emmanuel Fleurantin
+Copyright (C) 2025 Emmanuel Fleurantin
 
 A computational mathematics laboratory.
 
