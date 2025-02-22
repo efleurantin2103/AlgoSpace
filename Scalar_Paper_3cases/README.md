@@ -14,7 +14,7 @@ These codes are provided for research reproducibility and verification purposes.
 If you use these codes in your research, please cite: [Paper citation details to be added]
 
 ## License
-Copyright (C) 2024 Emmanuel Fleurantin
+Copyright (C) 2025 Emmanuel Fleurantin
 All rights reserved.
 
 This code is made available under restricted terms. Redistribution and use require explicit permission from the authors.
