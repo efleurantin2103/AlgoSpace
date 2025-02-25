@@ -45,13 +45,13 @@ Given the highly nonlinear nature of specific dynamical systems, we employ a div
 ### Phase 2 - Development 🚧
 - [X] Integration of multiple invariant manifold types
 - [X] Preliminary testing
-- [ ] Optimization of structural properties
+- [X] Optimization of structural properties
 
 ### Phase 3 - Implementation 🚧
 - [X] Publication preparation
-- [ ] Full system integration
+- [X] Full system integration
 - [ ] Documentation
 
 <div align="center">
-  <i>Last updated: November 2024</i>
+  <i>Last updated: February 2025</i>
 </div>
