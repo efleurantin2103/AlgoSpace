@@ -37,7 +37,7 @@ Given the highly nonlinear nature of specific dynamical systems, we employ a div
 - [x] Initial algorithms implemented
 - [x] Basic visualization pipeline created
 
-### Phase 2 - Development 🚧
+### Phase 2 - Development ✓
 - [X] Integration of multiple invariant manifold types
 - [X] Preliminary testing
 - [X] Optimization of structural properties
