@@ -4,7 +4,7 @@
 The objective of this ongoing project is to create tangible visualizations of invariant manifolds for ODEs, while advancing numerical methods for 3D printing these complex mathematical structures and their intersections.
 
 ## Access
-Visit: [3DPrintingInvariantManifolds on GitHub](https://github.com/esander1789/3DPrintingInvariantManifolds)
+The official repository for this project is available at: [https://github.com/esander1789/3DPrintingInvariantManifolds](https://github.com/esander1789/3DPrintingInvariantManifolds)
 
 ## Project Overview
 
