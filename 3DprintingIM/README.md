@@ -4,12 +4,7 @@
 The objective of this ongoing project is to create tangible visualizations of invariant manifolds for ODEs, while advancing numerical methods for 3D printing these complex mathematical structures and their intersections.
 
 ## Access
-This is a private repository. Access is currently restricted.
-
-### How to Request Access
-To request access to this project:
-- Email: efleuran@gmu.edu, efleuran@unc.edu
-- Contact Form: emmanuelfleurantin.info/
+Visit: [3DPrintingInvariantManifolds on GitHub](https://github.com/esander1789/3DPrintingInvariantManifolds)
 
 ## Project Overview
 
@@ -53,5 +48,5 @@ Given the highly nonlinear nature of specific dynamical systems, we employ a div
 - [ ] Documentation
 
 <div align="center">
-  <i>Last updated: February 2025</i>
+  <i>Last updated: March 2025</i>
 </div>
