@@ -9,6 +9,7 @@ This repository contains MATLAB code demonstrations developed for MATH 689 at Ge
 * `ClassDemo_RadiiPoly_CRTBP`: Application to the Circular Restricted Three Body Problem
 * `ClassDemo_RadiiPoly_Inf`: Extended implementation for infinite-dimensional problems
 * `ClassDemo_RadiiPoly_Lorenz`: Application to the Lorenz system
+* `ClassDemo_Fourier_inclass`: computes, visualizes, and evaluates the Fourier series approximation of the function g(x) = 1/(1+sin²(x)) up to order N=50
 
 ## Note
 
