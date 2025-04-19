@@ -181,12 +181,4 @@ hold off
 set(gcf, 'Color', 'w')
 drawnow
 
-
-% With additional formatting
-sgtitle('Scenario 1: $V_{1,\varepsilon}(x)=-30\varepsilon^2e^{-(\varepsilon x)^2},$  $V_2(x) = -0.01e^{-2x}$', 'Interpreter', 'latex', ...
-    'FontSize', 20, ...
-    'FontWeight', 'bold')
-
 end
-print(2, '-depsc', '-painters', 'scalar1_case1.eps')
-%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
