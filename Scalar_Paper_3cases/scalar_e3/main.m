@@ -10,7 +10,6 @@ mu=linspace(0.05,0.25,10 ...
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -((0.3)./(cosh(1.2*r))).^2;% Calculate u
 
-% Create the plot
 % figure
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
