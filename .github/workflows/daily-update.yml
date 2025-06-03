@@ -1,1 +1,36 @@
-
+name: Daily Learning Update
+on:
+  schedule:
+    - cron: '40 13 * * *'  # Daily at 8:40 AM ET (1:40 PM UTC)
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update learning log
+        run: |
+          TOPICS=("JavaScript" "Python" "React" "Algorithms" "System Design" "DevOps" "Node.js" "CSS" "Git" "Docker")
+          TOPIC=${TOPICS[$RANDOM % ${#TOPICS[@]}]}
+          
+          # Add new entry to the top of the file
+          echo "## $(date +%Y-%m-%d) - $TOPIC" > temp.md
+          echo "- Explored: $TOPIC concepts" >> temp.md
+          echo "- Status: In progress" >> temp.md
+          echo "" >> temp.md
+          
+          # Add existing content if file exists
+          if [ -f learning-log.md ]; then
+            cat learning-log.md >> temp.md
+          else
+            echo "# Learning Log" >> temp.md
+            echo "Daily learning and development notes" >> temp.md
+            echo "" >> temp.md
+          fi
+          
+          mv temp.md learning-log.md
+          
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add learning-log.md
+          git commit -m "study: daily $TOPIC learning update"
+          git push
