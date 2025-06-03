@@ -1,7 +1,7 @@
 name: Daily Learning Update
 on:
   schedule:
-    - cron: '40 13 * * *'  # Daily at 8:40 AM ET (1:40 PM UTC)
+     - cron: '0 14 * * *'  # Daily at 9:00 AM ET (2:00 PM UTC)
 jobs:
   update:
     runs-on: ubuntu-latest
