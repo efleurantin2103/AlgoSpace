@@ -6,7 +6,7 @@ c=-20;
 
 mu=linspace(0.05,0.25,10);
 %4.347388643264107
-%% BEGIN COMPUTE SOLITON for sigma system
+%% BEGIN COMPUTE POTENTIAL for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 
@@ -15,7 +15,7 @@ u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
 % ylabel('u')
-%% END COMPUTE SOLITON
+%% END COMPUTE POTENTIAL
 
 Points2=[];
 
