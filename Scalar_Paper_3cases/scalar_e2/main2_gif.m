@@ -112,8 +112,7 @@ for h = 1:length(mu)
     alpha=0.75;
     threshold = eps^(alpha);
     threshold2 = 1-eps^(alpha);%This works better and matches the neq parameterization in Section 5
-    % threshold = eps^(alpha)/(1+eps^(alpha));
-    % threshold2 = eps^(alpha-1)/(1+eps^(alpha-1));
+    
     cross_indices = find(diff(W0c(:,1) >= threshold) ~= 0);
     cross_indices2 = find(diff(W0u2(:,1) >= threshold2) ~= 0);
     cross_indices3 = find(diff(W0u23(:,1) >= threshold2) ~= 0);
@@ -195,4 +194,3 @@ for h = 1:length(mu)
 end
 
 fprintf('\nAnimated GIF created: jump_animation.gif\n');
-fprintf('Ready to drag into email!\n');
