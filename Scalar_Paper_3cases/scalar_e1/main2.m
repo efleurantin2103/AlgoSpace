@@ -7,7 +7,7 @@ c=-30;
 mu=linspace(0.05,0.25,10 ...
     );
 %4.347388643264107
-%% BEGIN COMPUTE SOLITON for sigma system
+%% 
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -(0.1*exp(-r)).^2;% Calculate u
 
@@ -16,13 +16,12 @@ u = -(0.1*exp(-r)).^2;% Calculate u
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
 % ylabel('u')
-%% END COMPUTE SOLITON
+%% 
 
 Points2=[];
 
 lim=1;
 scale2=10^(-5);
-
 
 for h = 1:length(mu)
 gamma = ((mu(h))/eps^2);
@@ -37,7 +36,6 @@ eq1 = [0;0];
 eq2 = [0;theta];
 eq3 = [0;theta2];
 eq4 = [0;theta3];
-
 
 % Fp1=[1;Fpb-2*pi];
 Fp1=[1;Fpb-2*pi];
@@ -73,9 +71,7 @@ xi_23 = Q3(:, 2);
 xi_14 = Q4(:, 1);
 xi_24 = Q4(:, 2);
 
-
 DF1 = jac4(Fp2, c, mu(h), eps);
-
 
 % Compute the eigenvectors and eigenvalues of the Jacobian
 [V1, D] = eig(DF1);
@@ -97,7 +93,6 @@ x1 = eq2 + scale*xi_2;
 x3 = eq3 + scale*xi_23;
 x4 = eq4 + scale*xi_24;
 xl = eq1 + scale*xi_2l;
-
 
 options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u2l] = ode45('Vop2',[0 10000], xl, options, flag, c, mu(h), eps, r, u);
