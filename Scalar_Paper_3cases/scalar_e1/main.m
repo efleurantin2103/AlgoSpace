@@ -7,7 +7,7 @@ c=-30;
 mu=linspace(0.05,0.25,10 ...
     );
 %4.347388643264107
-%% 
+%% Computing potential
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -(0.1*exp(-r)).^2;% Calculate u
 
