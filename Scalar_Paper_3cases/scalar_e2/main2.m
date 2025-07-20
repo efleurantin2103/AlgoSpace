@@ -7,7 +7,7 @@ c=-20;
 mu=linspace(0.05,0.25,10 ...
     );
 
-%% 
+%% Compute inner potential
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 
@@ -16,7 +16,7 @@ u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
 % ylabel('u')
-%%
+%% End compute inner potential
 
 Points2=[];
 
