@@ -16,7 +16,7 @@ u = -(0.1*exp(-r)).^2;% Calculate u
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
 % ylabel('u')
-%% 
+%% End computing inner potential
 
 Points2=[];
 
