@@ -5,7 +5,7 @@
 This directory contains the computational codes associated with the paper: "ON THE SPECTRUM OF SCHRÖDINGER OPERATORS INTERACTING AT TWO DISTINCT SCALES"
 
 <p align="center">
-  <img src="jump_animation.gif" alt="Jump animation" width="600">
+  <img src="scalar_e2/jump_animation.gif" alt="Jump animation" width="600">
 </p>
 
 ## Usage Restrictions
