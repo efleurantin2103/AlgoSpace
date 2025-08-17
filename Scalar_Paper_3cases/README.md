@@ -10,7 +10,7 @@ This directory contains the computational codes associated with the paper: "ON T
 
 
 ## Overview
-This repository contains six main MATLAB scripts that implement numerical simulations cross three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
+This repository contains six main MATLAB scripts that implement numerical simulations across three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
 
 <!--![Jump animation demonstration](scalar_e2/jump_animation.gif)-->
 
