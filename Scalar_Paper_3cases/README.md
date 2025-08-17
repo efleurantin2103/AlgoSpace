@@ -8,6 +8,10 @@ This directory contains the computational codes associated with the paper: "ON T
   <img src="scalar_e2/jump_animation.gif" alt="Jump animation" width="950">
 </p>
 
+
+## Overview
+This repository contains six main MATLAB scripts that implement numerical simulations cross three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
+
 <!--![Jump animation demonstration](scalar_e2/jump_animation.gif)-->
 
 ## Usage Restrictions
