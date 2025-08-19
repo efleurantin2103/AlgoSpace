@@ -1,8 +1,18 @@
 # Schrödinger Operators Interacting at Two Distinct Scales
 
-**Note: The main files have been temporarily removed from this repository.**
+<!--**Note: The main files have been temporarily removed from this repository.**-->
 
 This directory contains the computational codes associated with the paper: "ON THE SPECTRUM OF SCHRÖDINGER OPERATORS INTERACTING AT TWO DISTINCT SCALES"
+
+<p align="center">
+  <img src="scalar_e2/jump_animation.gif" alt="Jump animation" width="950">
+</p>
+
+
+## Overview
+This repository contains six main MATLAB scripts (3 cases) that implement numerical simulations across three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
+
+<!--![Jump animation demonstration](scalar_e2/jump_animation.gif)-->
 
 ## Usage Restrictions
 These codes are provided for research reproducibility and verification purposes. Any use of these codes must:

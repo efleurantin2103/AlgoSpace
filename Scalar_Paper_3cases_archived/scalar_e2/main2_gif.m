@@ -6,7 +6,7 @@ c=-20;
 
 mu=linspace(0.05,0.25,10);
 %4.347388643264107
-%% BEGIN COMPUTE SOLITON for sigma system
+%% BEGIN COMPUTE POTENTIAL for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
 u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 
@@ -15,7 +15,7 @@ u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
 % plot(r, u, 'LineWidth', 1.5)
 % xlabel('r')
 % ylabel('u')
-%% END COMPUTE SOLITON
+%% END COMPUTE POTENTIAL
 
 Points2=[];
 
@@ -112,8 +112,7 @@ for h = 1:length(mu)
     alpha=0.75;
     threshold = eps^(alpha);
     threshold2 = 1-eps^(alpha);%This works better and matches the neq parameterization in Section 5
-    % threshold = eps^(alpha)/(1+eps^(alpha));
-    % threshold2 = eps^(alpha-1)/(1+eps^(alpha-1));
+    
     cross_indices = find(diff(W0c(:,1) >= threshold) ~= 0);
     cross_indices2 = find(diff(W0u2(:,1) >= threshold2) ~= 0);
     cross_indices3 = find(diff(W0u23(:,1) >= threshold2) ~= 0);
@@ -195,4 +194,3 @@ for h = 1:length(mu)
 end
 
 fprintf('\nAnimated GIF created: jump_animation.gif\n');
-fprintf('Ready to drag into email!\n');
