@@ -4,27 +4,22 @@ format long;
 eps=0.1;
 c=-20;
 
-mu=linspace(0.05,0.25,10 ...
+mu=linspace(0.01,0.3,10 ...
     );
 
-%% BEGIN COMPUTE SOLITON for sigma system
+%% BEGIN COMPUTE V0 for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
-u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
+u = -(5)./((1+2*r).^4);% Calculate u
 
-% Create the plot
-% figure
-% plot(r, u, 'LineWidth', 1.5)
-% xlabel('r')
-% ylabel('u')
-%% END COMPUTE SOLITON
-
-Points2=[];
 
 lim=1;
 scale2=10^(-5);
 
+
 for h = 1:length(mu)
 gamma = ((mu(h))/eps^2);
+
+%Getting Fixed points
 Fpb=atan(-sqrt(gamma));
 Fpa=atan(sqrt(gamma));
 Fpbb=atan(-sqrt(mu(h)));
@@ -37,6 +32,8 @@ eq2 = [0;theta];
 eq3 = [0;theta2];
 eq4 = [0;theta3];
 
+
+% Fp1=[1;Fpb-2*pi];
 Fp1=[1;Fpb-2*pi];
 Fp2=[1;Fpa-2*pi];
 Fpp1=[1;Fpbb-pi];
@@ -70,15 +67,17 @@ xi_23 = Q3(:, 2);
 xi_14 = Q4(:, 1);
 xi_24 = Q4(:, 2);
 
+
 DF1 = jac4(Fp2, c, mu(h), eps);
 
-% Compute the eigenvectors and eigenvalues of the Jacobian
+
+% Compute the eigenvectors and eigenvalues of the Jacobian for Wc
 [V1, D] = eig(DF1);
 
 diag(D)
 V1(:,1)
 V1(:,2)
-%return
+
 % Extract the center/stable eigenvector
 if D(1,1) < D(2,2)    
     V1 = V1(:,2);
@@ -87,11 +86,13 @@ else
 end
 
 scale = 10^(-4);
-x0 = Fp2 - scale*V1;
+
+x0 = Fp2 - scale*V1;%-scale2;
 x1 = eq2 + scale*xi_2;
 x3 = eq3 + scale*xi_23;
 x4 = eq4 + scale*xi_24;
 xl = eq1 + scale*xi_2l;
+
 
 options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u2l] = ode45('Vop2',[0 10000], xl, options, flag, c, mu(h), eps, r, u);
@@ -100,9 +101,10 @@ options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u24] = ode45('Vop2',[0 10000], x4, options, flag, c, mu(h), eps, r, u);
 [t, W0c] = ode45('Vop',[0 -1E7], x0, options, flag, c, mu(h), eps, r, u);
 
-alpha=0.75;
-threshold = eps^(alpha);
-threshold2 = 1-eps^(alpha);
+
+kappa=0.45;%This works better, relationship to alpha
+threshold = eps^(kappa)/(1+eps^(kappa));
+threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
 cross_indices = find(diff(W0c(:,1) >= threshold) ~= 0);
 cross_indices2 = find(diff(W0u2(:,1) >= threshold2) ~= 0);
 cross_indices3 = find(diff(W0u23(:,1) >= threshold2) ~= 0);
@@ -113,6 +115,7 @@ theta_diff = abs(W0c(cross_indices,2) - W0c(1,2));
 theta_diff2 = abs(W0u2(cross_indices2,2) - W0u2(1,2));
 theta_diff3 = abs(W0u23(cross_indices3,2) - W0u23(1,2));
 theta_diff4 = abs(W0u24(cross_indices4,2) - W0u23(1,2));
+
 
 figure(2)
 set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
@@ -130,9 +133,10 @@ xline(threshold2,'--', 'LineWidth', 1.5);
 xlabel('$\sigma$', 'Interpreter', 'latex')
 ylabel('$\theta$', 'Interpreter', 'latex')
 yyaxis left
-axis([0 1 -8 8])
+axis([0 1 -14 8])
+%set(gca, 'YColor', 'k')
 yyaxis right
-axis([0 1 -8 8])
+axis([0 1 -14 8])
 set(gca, 'YColor', 'none','FontSize', 20, 'TickLabelInterpreter', 'latex','YLabel', [],'YTick', [])
 hold off
 
@@ -147,10 +151,10 @@ plot(W0c(1:cross_indices, 1), W0c(1:cross_indices, 2), 'r', ...
 xline(threshold,'--', 'LineWidth', 1.5);
 plot(Fp2(1),Fp2(2),'r.', 'MarkerSize',15)
 yyaxis left
-axis([0 1 -8 8])
+axis([0 1 -14 8])
 set(gca, 'YColor', 'none', 'YTick', [])
 yyaxis right
-axis([0 1 -8 8])
+axis([0 1 -14 8])
 set(gca, 'YColor', 'k', 'FontSize', 20, 'TickLabelInterpreter', 'latex')
 xlabel('$\tau$', 'Interpreter', 'latex')
 ylabel('$\psi$', 'Interpreter', 'latex')
@@ -160,4 +164,7 @@ hold off
 set(gcf, 'Color', 'w')
 drawnow
 
+
 end
+%print(2, '-depsc', '-painters', 'scalar2_case2')
+%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')

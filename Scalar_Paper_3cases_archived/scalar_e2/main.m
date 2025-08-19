@@ -2,23 +2,31 @@ clear all;
 format long;
 
 eps=0.1;
-c=-30;
+c=-20;
 
-mu=linspace(0.05,0.3,10 ...
+mu=linspace(0.05,0.25,10 ...
     );
 
-%% BEGIN GETTING V0
+%% BEGIN COMPUTE SOLITON for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
-u = -(2.8*exp(-r)).^2;% Calculate u
+u = -((0.4)./((1+2*r).^2)).^2;% Calculate u
+
+% Create the plot
+% figure
+% plot(r, u, 'LineWidth', 1.5)
+% xlabel('r')
+% ylabel('u')
+%% END COMPUTE SOLITON
+
+Points2=[];
 
 lim=1;
 scale2=10^(-5);
 
+
 for h = 1:length(mu)
 gamma = ((mu(h))/eps^2);
 Fpb=atan(-sqrt(gamma));
-
-%Getting fixed points
 Fpa=atan(sqrt(gamma));
 Fpbb=atan(-sqrt(mu(h)));
 Fpaa=atan(sqrt(mu(h)));
@@ -30,6 +38,8 @@ eq2 = [0;theta];
 eq3 = [0;theta2];
 eq4 = [0;theta3];
 
+
+% Fp1=[1;Fpb-2*pi];
 Fp1=[1;Fpb-2*pi];
 Fp2=[1;Fpa-2*pi];
 Fpp1=[1;Fpbb-pi];
@@ -92,17 +102,22 @@ options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u2] = ode45('Vop2',[0 10000], x1, options, flag, c, mu(h), eps, r, u);
 [t, W0u23] = ode45('Vop2',[0 10000], x3, options, flag, c, mu(h), eps, r, u);
 [t, W0u24] = ode45('Vop2',[0 10000], x4, options, flag, c, mu(h), eps, r, u);
-[t, W0c] = ode45('Vop',[0 -1E9], x0, options, flag, c, mu(h), eps, r, u);
+[t, W0c] = ode45('Vop',[0 -1E7], x0, options, flag, c, mu(h), eps, r, u);
 
+alpha=0.75;
+threshold = eps^(alpha);
+threshold2 = 1-eps^(alpha);
 
-if h == 1
-    line_color = 'k';  % Black for first index
-    line_width = 2.5;  % Thicker for black
-else
-    line_color = 'r';  % Red for other indices
-    line_width = 0.5;  % Thicker for black
-end
+cross_indices = find(diff(W0c(:,1) >= threshold) ~= 0);
+cross_indices2 = find(diff(W0u2(:,1) >= threshold2) ~= 0);
+cross_indices3 = find(diff(W0u23(:,1) >= threshold2) ~= 0);
+cross_indices4 = find(diff(W0u24(:,1) >= threshold2) ~= 0);
+cross_indicesl = find(diff(W0u2l(:,1) >= threshold2) ~= 0);
 
+theta_diff = abs(W0c(cross_indices,2) - W0c(1,2));
+theta_diff2 = abs(W0u2(cross_indices2,2) - W0u2(1,2));
+theta_diff3 = abs(W0u23(cross_indices3,2) - W0u23(1,2));
+theta_diff4 = abs(W0u24(cross_indices4,2) - W0u23(1,2));
 
 figure(2)
 set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
@@ -110,48 +125,54 @@ set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
 % Left subplot
 subplot(1, 2, 1)
 hold on
-plot(W0u2l(:, 1), W0u2l(:, 2), [line_color '-'], 'LineWidth', line_width)
+plot(W0u2l(:, 1), W0u2l(:, 2), 'r-', 'LineWidth', 0.5)
 plot(W0u2(:, 1), W0u2(:, 2), 'r-', 'LineWidth', 0.5)
 plot(W0u23(:, 1), W0u23(:, 2), 'r-', 'LineWidth', 0.5)
 plot(Fpp1(1),Fpp1(2)-pi,'b.', 'MarkerSize',20)
+plot(Fpp1(1),Fpp1(2)+pi,'b.', 'MarkerSize',20)
 plot(Fpp1(1),Fpp1(2),'b.', 'MarkerSize',15)
-plot(Fpp1(1),Fpp1(2)+pi,'b.', 'MarkerSize',15)
-plot(Fpp1(1),Fpp1(2)-2*pi,'b.', 'MarkerSize',15)
+plot(Fpp1(1),Fpp1(2)+2*pi,'b.', 'MarkerSize',15)
+plot(Fpp1(1),Fpp1(2)+3*pi,'b.', 'MarkerSize',15)
+plot(Fpp2(1),Fpp2(2)-pi,'r.', 'MarkerSize',20)
 plot(Fpp2(1),Fpp2(2)+pi,'r.', 'MarkerSize',20)
 plot(Fpp2(1),Fpp2(2),'r.', 'MarkerSize',15)
-plot(Fpp2(1),Fpp2(2)-2*pi,'r.', 'MarkerSize',15)
-plot(Fpp2(1),Fpp2(2)-pi,'r.', 'MarkerSize',15)
+plot(Fpp2(1),Fpp2(2)+2*pi,'r.', 'MarkerSize',15)
+plot(Fpp2(1),Fpp2(2)+3*pi,'r.', 'MarkerSize',15)
 plot(eq1(1),eq1(2),'r.', 'MarkerSize',15)
 plot(eq2(1),eq2(2),'r.', 'MarkerSize',15)
 plot(eq3(1),eq3(2),'r.', 'MarkerSize',15)
 xlabel('$\sigma$', 'Interpreter', 'latex')
 ylabel('$\theta$', 'Interpreter', 'latex')
 yyaxis left
-axis([0 1 -10 10])
+axis([0 1 -8 8])
 yyaxis right
-axis([0 1 -10 10])
+axis([0 1 -8 8])
 set(gca, 'YColor', 'k','FontSize', 20, 'TickLabelInterpreter', 'latex','YLabel', [])
 hold off
 
 % Right subplot
 subplot(1, 2, 2)
 hold on
-plot(W0c(:, 1), W0c(:, 2), [line_color '-'], ...
-     'LineWidth', line_width, ...
+plot(W0c(:, 1), W0c(:, 2), 'r', ...
+     'LineWidth', .5, ...
      'LineStyle', '-', ...
      'LineJoin', 'round', ...
      'Marker', 'none')
-plot(Fp2(1),Fp2(2),'b.', 'MarkerSize',15)
-plot(Fp1(1),Fp1(2)+pi,'r.', 'MarkerSize',15)
+plot(Fp2(1),Fp2(2),'r.', 'MarkerSize',15)
+plot(Fp2(1),Fp2(2)+pi,'r.', 'MarkerSize',15)
+plot(Fp2(1),Fp2(2)+2*pi,'r.', 'MarkerSize',15)
+plot(Fp1(1),Fp1(2),'b.', 'MarkerSize',15)
+plot(Fp1(1),Fp1(2)+pi,'b.', 'MarkerSize',15)
+plot(Fp1(1),Fp1(2)+2*pi,'b.', 'MarkerSize',15)
 plot(0,pi/2,'b.', 'MarkerSize',15)
+plot(0,-3*pi/2,'b.', 'MarkerSize',15)
 plot(0,-pi/2,'b.', 'MarkerSize',15)
-plot(0,5*pi/2,'b.', 'MarkerSize',15)
 plot(0,3*pi/2,'b.', 'MarkerSize',15)
 yyaxis left
-axis([0 1 -10 10])
+axis([0 1 -8 8])
 set(gca, 'YColor', 'k','YLabel', [])
 yyaxis right
-axis([0 1 -10 10])
+axis([0 1 -8 8])
 set(gca, 'YColor', 'k', 'FontSize', 20, 'TickLabelInterpreter', 'latex')
 xlabel('$\tau$', 'Interpreter', 'latex')
 ylabel('$\psi$', 'Interpreter', 'latex')
@@ -161,12 +182,4 @@ hold off
 set(gcf, 'Color', 'w')
 drawnow
 
-
-% With additional formatting
-sgtitle('Scenario 1: $V_{1,\varepsilon}(x)=-30\varepsilon^2e^{-(\varepsilon x)^2},$  $V_0(x) = -2.8e^{-x^2}$', 'Interpreter', 'latex', ...
-    'FontSize', 20, ...
-    'FontWeight', 'bold')
-
 end
-%print(2, '-depsc', '-painters', 'scalar1_case1.eps')
-%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
