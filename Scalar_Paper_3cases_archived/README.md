@@ -1,30 +1,17 @@
-# Schrödinger Operators Interacting at Two Distinct Scales
+# Scalar_Paper_3cases_archived
 
-<!--**Note: The main files have been temporarily removed from this repository.**-->
+## 📁 Archive Notice
 
-This directory contains the computational codes associated with the paper: "ON THE SPECTRUM OF SCHRÖDINGER OPERATORS INTERACTING AT TWO DISTINCT SCALES"
+This folder contains **archived versions** of the Scalar Paper 3 Cases project. The contents of this directory represent previous iterations of the codebase that have been preserved for historical reference and backup purposes.
 
-<p align="center">
-  <img src="scalar_e2/jump_animation.gif" alt="Jump animation" width="950">
-</p>
+## ⚠️ Important Notes
 
+- **DO NOT MODIFY** files in this archive folder
+- For current development, use the active project folder: `../Scalar_Paper_3cases/`
+- This archive serves as a backup and reference point
+- Original commit history is preserved in Git version control
 
-## Overview
-This repository contains six main MATLAB scripts (3 cases) that implement numerical simulations across three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
+---
 
-<!--![Jump animation demonstration](scalar_e2/jump_animation.gif)-->
-
-## Usage Restrictions
-These codes are provided for research reproducibility and verification purposes. Any use of these codes must:
-1. Properly cite the original paper
-2. Obtain written permission from the authors for any commercial use
-3. Include appropriate attribution in any derivative work
-
-## Citation
-If you use these codes in your research, please cite: [Paper citation details to be added]
-
-## License
-Copyright (C) 2025 Emmanuel Fleurantin
-All rights reserved.
-
-This code is made available under restricted terms. Redistribution and use require explicit permission from the authors.
+**Last Updated**: August 2025  
+**Status**: Read-Only Archive
