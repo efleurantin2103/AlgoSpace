@@ -2,15 +2,15 @@ clear all;
 format long;
 
 eps=0.1;
-c=-15;
+c=-30;
 
 %eigenvalue paramaters
-mu=linspace(0.01,0.25,10 ...
+mu=linspace(0.01,0.3,10 ...
     );
 
 %Compute V_0
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
-u = -((3)./(cosh(1.2*r))).^2;% Calculate u
+u = -3*((1)./(cosh(1.2*r))).^2;% Calculate u
 
 
 lim=1;
@@ -97,7 +97,7 @@ options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u2l] = ode45('Vop2',[0 10000], xl, options, flag, c, mu(h), eps, r, u);
 [t, W0u2] = ode45('Vop2',[0 10000], x1, options, flag, c, mu(h), eps, r, u);
 [t, W0u23] = ode45('Vop2',[0 10000], x3, options, flag, c, mu(h), eps, r, u);
-%[t, W0u24] = ode45('Vop2',[0 10000], x4, options, flag, c, mu(h), eps, r, u);
+[t, W0u24] = ode45('Vop2',[0 10000], x4, options, flag, c, mu(h), eps, r, u);
 [t, W0c] = ode45('Vop',[0 -1E9], x0, options, flag, c, mu(h), eps, r, u);
 
 
@@ -115,27 +115,29 @@ figure(2)
 subplot(1, 2, 1)
 hold on
 plot(W0u2l(:, 1), W0u2l(:, 2), [line_color '-'], 'LineWidth', line_width)
-plot(W0u2(:, 1), W0u2(:, 2), 'r-', 'LineWidth', 0.5)
+%plot(W0u2(:, 1), W0u2(:, 2), 'r-', 'LineWidth', 0.5)
 plot(W0u23(:, 1), W0u23(:, 2), 'r-', 'LineWidth', 0.5)
+plot(W0u24(:, 1), W0u24(:, 2), 'r-', 'LineWidth', 0.5)
 plot(Fpp1(1),Fpp1(2)-2*pi,'b.', 'MarkerSize',20)
-plot(Fpp1(1),Fpp1(2)-3*pi,'b.', 'MarkerSize',20)
-%plot(Fpp1(1),Fpp1(2)-pi,'b.', 'MarkerSize',15)
-plot(Fpp1(1),Fpp1(2)-4*pi,'b.', 'MarkerSize',15)
+plot(Fpp1(1),Fpp1(2)+pi,'b.', 'MarkerSize',20)
+plot(Fpp1(1),Fpp1(2)-pi,'b.', 'MarkerSize',15)
 plot(Fpp1(1),Fpp1(2),'b.', 'MarkerSize',15)
+plot(Fpp1(1),Fpp1(2)+2*pi,'b.', 'MarkerSize',15)
 plot(Fpp2(1),Fpp2(2)-pi,'r.', 'MarkerSize',20)
 plot(Fpp2(1),Fpp2(2)-2*pi,'r.', 'MarkerSize',20)
-plot(Fpp2(1),Fpp2(2)-3*pi,'r.', 'MarkerSize',15)
-plot(Fpp2(1),Fpp2(2)-4*pi,'r.', 'MarkerSize',15)
+plot(Fpp2(1),Fpp2(2)+pi,'r.', 'MarkerSize',15)
 plot(Fpp2(1),Fpp2(2),'r.', 'MarkerSize',15)
+plot(Fpp2(1),Fpp2(2)+2*pi,'r.', 'MarkerSize',15)
 plot(eq1(1),eq1(2),'r.', 'MarkerSize',15)
-plot(eq2(1),eq2(2),'r.', 'MarkerSize',15)
+%plot(eq2(1),eq2(2),'r.', 'MarkerSize',15)
 plot(eq3(1),eq3(2),'r.', 'MarkerSize',15)
+plot(eq4(1),eq4(2),'r.', 'MarkerSize',15)
 xlabel('$\sigma$', 'Interpreter', 'latex')
 ylabel('$\theta$', 'Interpreter', 'latex')
 yyaxis left
-axis([0 1 -inf inf])
+axis([0 1 -10 9])
 yyaxis right
-axis([0 1 -inf inf])
+axis([0 1 -10 9])
 set(gca, 'YColor', 'k','FontSize', 20, 'TickLabelInterpreter', 'latex','YLabel', [])
 hold off
 
@@ -158,17 +160,17 @@ plot(0,pi/2,'b.', 'MarkerSize',15)
 plot(0,-pi/2,'b.', 'MarkerSize',15)
 plot(0,5*pi/2,'b.', 'MarkerSize',15)
 yyaxis left
-axis([0 1 -inf inf])
+axis([0 1 -10 9])
 set(gca, 'YColor', 'k','YLabel', [])
 yyaxis right
-axis([0 1 -inf inf])
+axis([0 1 -10 9])
 set(gca, 'YColor', 'k', 'FontSize', 20, 'TickLabelInterpreter', 'latex')
 xlabel('$\tau$', 'Interpreter', 'latex')
 ylabel('$\psi$', 'Interpreter', 'latex')
 hold off
 
 % With additional formatting
-sgtitle('Scenario 3: $V_{1,\varepsilon}(x)=-\frac{15\varepsilon^2}{1+(\varepsilon x)^2}$,  $V_0(x) = -\frac{3}{\cosh^2(1.2x)}$', 'Interpreter', 'latex', ...
+sgtitle('Scenario 3: $V_{1,\varepsilon}(x)=-\frac{30\varepsilon^2}{(1+(\varepsilon x)^2)^2}$,  $V_0(x) = -\frac{3}{\cosh^2(1.2x)}$', 'Interpreter', 'latex', ...
     'FontSize', 20, ...
     'FontWeight', 'bold')
 
@@ -177,5 +179,3 @@ set(gcf, 'Color', 'w')
 drawnow
 
 end
-
-%print(2, '-depsc', '-painters', 'scalar3_case1')
