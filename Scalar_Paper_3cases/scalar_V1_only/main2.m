@@ -2,8 +2,8 @@ clear all;
 format long;
 
 eps=0;%Not needed
-c=-30;%This is for case 1
-mu=0;%for Case 3 only, mu = 0.1
+c=-30;%This is for case 3
+mu=0;
 
 lim=1;%set amount of Fp
 
@@ -42,6 +42,6 @@ set(gcf, 'Color', 'w')
 
 end
 
-%print(1, '-depsc', '-painters', 'scalar_eigenV1_case1')
+print(1, '-depsc', '-painters', 'scalar_eigenV1_case3')
 
 
