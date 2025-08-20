@@ -2,20 +2,15 @@ clear all;
 format long;
 
 eps=0.1;
-c=-15;
-clear all;
-format long;
-
-eps=0.1;
-c=-15;
+c=-30;
 
 %eigenvalue parameters
-mu=linspace(0.01,0.25,10 ...
+mu=linspace(0.01,0.3,10 ...
     );
 
 %% BEGIN COMPUTE V0 for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
-u = -((3)./(cosh(1.2*r))).^2;% Calculate u
+u = -3*((1)./(cosh(1.2*r))).^2;% Calculate u
 
 
 lim=1;
@@ -135,19 +130,21 @@ set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
 subplot(1, 2, 1)
 hold on
 plot(W0u2l(1:cross_indicesl, 1), W0u2l(1:cross_indicesl, 2), 'r-', 'LineWidth', 0.5)
-plot(W0u2(1:cross_indices2, 1), W0u2(1:cross_indices2, 2), 'r-', 'LineWidth', 0.5)
+%plot(W0u2(1:cross_indices2, 1), W0u2(1:cross_indices2, 2), 'r-', 'LineWidth', 0.5)
 plot(W0u23(1:cross_indices3, 1), W0u23(1:cross_indices3, 2), 'r-', 'LineWidth', 0.5)
+plot(W0u24(1:cross_indices4, 1), W0u24(1:cross_indices4, 2), 'r-', 'LineWidth', 0.5)
 plot(eq1(1),eq1(2),'r.', 'MarkerSize',15)
-plot(eq2(1),eq2(2),'r.', 'MarkerSize',15)
+%plot(eq2(1),eq2(2),'r.', 'MarkerSize',15)
 plot(eq3(1),eq3(2),'r.', 'MarkerSize',15)
+plot(eq4(1),eq4(2),'r.', 'MarkerSize',15)
 xline(threshold2,'--', 'LineWidth', 1.5);
 xlabel('$\sigma$', 'Interpreter', 'latex')
 ylabel('$\theta$', 'Interpreter', 'latex')
 yyaxis left
-axis([0 1 -inf inf])
+axis([0 1 -5 9])
 %set(gca, 'YColor', 'k')
 yyaxis right
-axis([0 1 -inf inf])
+axis([0 1 -5 9])
 set(gca, 'YColor', 'none','FontSize', 20, 'TickLabelInterpreter', 'latex','YLabel', [],'YTick', [])
 hold off
 
@@ -162,10 +159,10 @@ plot(W0c(1:cross_indices, 1), W0c(1:cross_indices, 2), 'r', ...
 xline(threshold,'--', 'LineWidth', 1.5);
 plot(Fp2(1),Fp2(2),'r.', 'MarkerSize',15)
 yyaxis left
-axis([0 1 -inf inf])
+axis([0 1 -5 9])
 set(gca, 'YColor', 'none', 'YTick', [])
 yyaxis right
-axis([0 1 -inf inf])
+axis([0 1 -5 9])
 set(gca, 'YColor', 'k', 'FontSize', 20, 'TickLabelInterpreter', 'latex')
 xlabel('$\tau$', 'Interpreter', 'latex')
 ylabel('$\psi$', 'Interpreter', 'latex')
@@ -177,5 +174,3 @@ drawnow
 
 
 end
-
-%print(2, '-depsc', '-painters', 'scalar3_case2')
