@@ -6,7 +6,7 @@ function f = V(c,x,eps)
 %f = c*(exp(-(x/(1-x)).^2)+(eps^2)*exp(-(eps*x/(1-x)).^2));
 %f = c*(eps^2)*exp(-(eps*x/(1-x)).^2)+1;
 %f = c*(eps^2)*exp(-eps^2*(x/(1-x))^2)+eps^2;
-f = c*exp(-(eps*(x/(1-x))).^2);
+f = c*exp(-((x/(1-x))).^2);
 end
 
 %%%

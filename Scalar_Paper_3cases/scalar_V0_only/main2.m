@@ -4,7 +4,7 @@ format long;
 %comment/uncomment selected cases. Please refer to the manuscript.
 
 eps=0;%Not needed   
-c=-3;%This is one is for scenario 3   
+c=-2.6;%This is one is for scenario 2 
 mu=0;%eigenvalue parameter  
 
 lim=1;%set amount of Fp
@@ -13,7 +13,7 @@ for i=1:lim
 theta=(i-1)*pi;
 eq2 = [0;theta];%Fp at sigma=0
 
-DF = jac2(eq2, c, mu, eps);
+DF = jac1(eq2, c, mu, eps);
 
 [Q, Lambda] = eig(DF);
 
@@ -44,5 +44,5 @@ set(gcf, 'Color', 'w')
 
 end
 
-%print(1, '-depsc', '-painters', 'scalar_eigen_case3')
+%print(1, '-depsc', '-painters', 'scalar_eigen_case2')
 % 

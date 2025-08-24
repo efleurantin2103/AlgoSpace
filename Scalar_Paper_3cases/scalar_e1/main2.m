@@ -4,12 +4,11 @@ format long;
 eps=0.1;
 c=-30;
 
-mu=linspace(0.05,0.3,10 ...
-    );
+mu=eps^2*linspace(0.01,20,50);
 
 %% BEGIN COMPUTE V0 for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
-u = -(2.8*exp(-r)).^2;% Calculate u
+u = -(2.8*exp(-r.^2));% Calculate u
 
 lim=1;
 scale2=10^(-5);
@@ -93,7 +92,7 @@ options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0u2] = ode45('Vop2',[0 10000], x1, options, flag, c, mu(h), eps, r, u);
 [t, W0u23] = ode45('Vop2',[0 10000], x3, options, flag, c, mu(h), eps, r, u);
 [t, W0u24] = ode45('Vop2',[0 10000], x4, options, flag, c, mu(h), eps, r, u);
-[t, W0c] = ode45('Vop',[0 -1E7], x0, options, flag, c, mu(h), eps, r, u);
+[t, W0c] = ode45('Vop',[1E4 0], x0, options, flag, c, mu(h), eps, r, u, h);
 
 kappa=0.45;%works fine, relationship to alpha
 threshold = eps^(kappa)/(1+eps^(kappa));
@@ -156,5 +155,5 @@ set(gcf, 'Color', 'w')
 drawnow
 
 end
-%print(2, '-depsc', '-painters', 'scalar1_case2')
+print(2, '-depsc', '-painters', 'scalar1_case2')
 %print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
