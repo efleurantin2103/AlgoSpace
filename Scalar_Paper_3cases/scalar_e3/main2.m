@@ -174,5 +174,3 @@ drawnow
 
 
 end
-
-print(2, '-depsc', '-painters', 'scalar3_case2')
