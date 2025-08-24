@@ -179,7 +179,3 @@ set(gcf, 'Color', 'w')
 drawnow
 
 end
-
-%print(2, '-depsc', '-painters', 'scalar3_case1')
-%print(2, '-dpdf', '-vector', '-bestfit', 'scalar3_case1.pdf')
-print(2, '-djpeg', '-r300', 'scalar3_case1.jpg')
