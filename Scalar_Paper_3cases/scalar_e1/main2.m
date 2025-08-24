@@ -155,5 +155,3 @@ set(gcf, 'Color', 'w')
 drawnow
 
 end
-print(2, '-depsc', '-painters', 'scalar1_case2')
-%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
