@@ -4,7 +4,7 @@ format long;
 eps=0.1;
 c=-30;
 
-mu=eps^2*linspace(0.01,20,50);
+mu=eps^2*linspace(0.01,10,10);
 
 %% BEGIN COMPUTE V0 for sigma system
 r = linspace(0,1000,238); %Create r vector from 0 to 1000 
@@ -155,3 +155,8 @@ set(gcf, 'Color', 'w')
 drawnow
 
 end
+<<<<<<< Updated upstream
+=======
+%print(2, '-depsc', '-painters', 'scalar1_case2')
+%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
+>>>>>>> Stashed changes

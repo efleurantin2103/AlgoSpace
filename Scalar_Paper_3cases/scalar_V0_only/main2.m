@@ -44,5 +44,5 @@ set(gcf, 'Color', 'w')
 
 end
 
-%print(1, '-depsc', '-painters', 'scalar_eigen_case2')
+%print(1, '-depsc', '-painters', 'scalar_eigen_case3')
 % 
