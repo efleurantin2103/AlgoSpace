@@ -42,6 +42,4 @@ set(gcf, 'Color', 'w')
 
 end
 
-print(1, '-depsc', '-painters', 'scalar_eigenV1_case3')
-
 
