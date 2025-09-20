@@ -4,10 +4,9 @@
 
 This directory contains the computational codes associated with the paper: "ON THE SPECTRUM OF SCHRÖDINGER OPERATORS INTERACTING AT TWO DISTINCT SCALES"
 
-<p align="center">
+<!--<p align="center">
   <img src="scalar_e2/jump_animation.gif" alt="Jump animation" width="950">
-</p>
-
+</p>-->
 
 ## Overview
 This repository contains six main MATLAB scripts (3 cases) that implement numerical simulations across three distinct parameter regimes. Each case studies the dynamical behavior through phase portrait analysis and trajectory computation in transformed coordinate systems.
@@ -28,3 +27,4 @@ Copyright (C) 2025 Emmanuel Fleurantin
 All rights reserved.
 
 This code is made available under restricted terms. Redistribution and use require explicit permission from the authors.
+

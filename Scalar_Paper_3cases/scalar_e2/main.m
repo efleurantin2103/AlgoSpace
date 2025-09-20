@@ -191,7 +191,4 @@ sgtitle('Scenario 2: $V_{1,\varepsilon}(x)=-20\varepsilon^2\mathrm{sech}(\vareps
     'FontWeight', 'bold')
 
 end
-%print(2, '-depsc', '-painters', 'scalar2_case1.eps')
-%print(2, '-dpdf', '-painters', 'scalar2_case1.pdf')
-%print(2, '-djpeg', '-r300', 'scalar2_case1.jpg')
 

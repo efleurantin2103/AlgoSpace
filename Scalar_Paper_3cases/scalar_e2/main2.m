@@ -173,5 +173,3 @@ drawnow
 
 
 end
-%print(2, '-depsc', '-painters', 'scalar2_case2')
-%print(2, '-dpdf', '-vector', '-bestfit', 'figure1.pdf')
