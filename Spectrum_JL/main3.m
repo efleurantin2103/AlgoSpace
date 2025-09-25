@@ -1,16 +1,10 @@
 clear all;
 format long;
 
-addpath('/Users/emmanuelfleurantin/Dropbox/Golovanich_SpectralTheory/Dmitro_Code/Overleaf_codes_E/Shooting_from_0')
-
 eps=0.1;
 c=-30;
-%lambda=0.998;
 lambda = linspace(0.83,1,20);
 
-% alpha=0.75;
-% threshold = eps^(alpha);
-% threshold2 = 1-eps^(alpha);
 kappa=0.65;%works fine, relationship to alpha
 threshold = eps^(kappa)/(1+eps^(kappa));
 threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
@@ -209,4 +203,4 @@ hold off
 
 end
 
-print(1, '-djpeg', '-r300', 'JL2.jpg')
+%print(1, '-djpeg', '-r300', 'JL2.jpg')
