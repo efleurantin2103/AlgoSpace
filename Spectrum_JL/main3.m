@@ -8,9 +8,6 @@ c=-30;
 %lambda=0.998;
 lambda = linspace(0.83,1,20);
 
-% alpha=0.75;
-% threshold = eps^(alpha);
-% threshold2 = 1-eps^(alpha);
 kappa=0.65;%works fine, relationship to alpha
 threshold = eps^(kappa)/(1+eps^(kappa));
 threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
@@ -68,11 +65,6 @@ for i=1:nmax
     options = bvpset('SingularTerm',S,'FJacobian',solit_jac_handle,'BCJacobian',solit_bc_jac_handle);    
     sol = bvp4c(solit_sys_handle, solit_bc_handle, sol, options);
 end
-
-%% Plot soliton
-%
-% plot(sol.x, sol.y(1,:));
-% axis([0 10 0 inf]);
 
 %% Vectorize the soliton so that it may be made into a function.
 %
@@ -239,5 +231,3 @@ y_sorted = newtht_last(idx) - 2*pi;
 % Thick black overlay
 plot(x_sorted, y_sorted, 'k', 'LineWidth', 3);
 drawnow;
-
-%print(1, '-djpeg', '-r300', 'JL_combined1.jpg')
