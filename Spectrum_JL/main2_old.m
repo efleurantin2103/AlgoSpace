@@ -8,12 +8,12 @@ c=-30;
 %lambda=0.998;
 lambda = linspace(0.83,1,20);
 
-% alpha=0.75;
-% threshold = eps^(alpha);
-% threshold2 = 1-eps^(alpha);
-kappa=0.65;%works fine, relationship to alpha
-threshold = eps^(kappa)/(1+eps^(kappa));
-threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
+alpha=0.75;
+threshold = eps^(alpha);
+threshold2 = 1-eps^(alpha);
+% kappa=0.65;%works fine, relationship to alpha
+% threshold = eps^(kappa)/(1+eps^(kappa));
+% threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% BEGIN COMPUTE SOLITON
@@ -143,9 +143,9 @@ Q = cos(W0c(:,2));
 eta = sin(W0c(:,2));
 
 re = -Q/sqrt(2) - eta;
-im = -eta/sqrt(2) + Q;
-top = complex(re,im);%
-bottom = complex(re,-im);
+im = -eta/sqrt(2) - Q;
+top = complex(re,-im);%
+bottom = complex(re,im);
 det2 = top./bottom;
 RE = real(det2);
 IM = imag(det2);
@@ -173,71 +173,39 @@ end
 xx2=t1;
 newtht2 = unwrap(tht2);%unwrapping angle values
 
+jumptau = abs(floor((newtht(1)-newtht(end))/(2*pi)))
+jumpsig = abs(floor((newtht2(1)-newtht2(end))/(2*pi)))
 
 figure(1)
 set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
 
-LL=length(W0u2(:,6));
-LC=length(W0c(:,1));
-
-if h == length(lambda)-1
-    line_color_1 = 'r'; % First line red
-    line_color_2 = 'r'; % Second line red
-    line_color_3 = 'k'; % Third line black (only the last one)
-    line_width_1 = 0.5;
-    line_width_2 = 0.5;
-    line_width_3 = 3; % Thicker for black
-    W0c_last    = W0c;
-    newtht_last = newtht;
-else
-    line_color_1 = 'r';
-    line_color_2 = 'r';
-    line_color_3 = 'r';
-    line_width_1 = 0.5;
-    line_width_2 = 0.5;
-    line_width_3 = 0.5;
-end
-
 % Left subplot
 subplot(1, 2, 1)
 hold on
-plot(W0u2(:,6), newtht2(1:LL)+ 6*pi, [line_color_1 '-'], 'LineWidth', line_width_1)
-plot(W0u2(:,6), newtht2(1:LL)+ 4*pi, [line_color_2 '-'], 'LineWidth', line_width_2)
-plot(W0u2(:,6), newtht2(1:LL)+ 2*pi, [line_color_3 '-'], 'LineWidth', line_width_3) % This one is black
-xline(1,'-', 'LineWidth', 0.5);
+plot(W0u2(1:cross_indices2,6), newtht2(1:cross_indices2)+ 6*pi,'r','LineWidth', 0.5) % plotting unwrap angle values
+plot(W0u2(1:cross_indices2,6), newtht2(1:cross_indices2)+ 4*pi,'r','LineWidth', 0.5) % plotting unwrap angle values
+plot(W0u2(1:cross_indices2,6), newtht2(1:cross_indices2)+ 2*pi,'r','LineWidth', 0.5) % plotting unwrap angle values
+xline(threshold2,'--', 'LineWidth', 1.5);
 xlabel('$\sigma$', 'Interpreter', 'latex')
 ylabel('$\theta(\sigma)$', 'Interpreter', 'latex')
-axis([0 1 -18 20])
-set(gca, 'YColor', 'k','FontSize', 20, 'TickLabelInterpreter', 'latex')
+%xlim([0 1])
+axis([0 1 -8 20])
+set(gca, 'FontSize', 20, 'TickLabelInterpreter', 'latex')
 hold off
 
-% Right subplot
+% Right subplot  
 subplot(1, 2, 2)
 hold on
-plot(W0c(:,1), newtht(1:LC)-2*pi, [line_color_3 '-'], 'LineWidth', line_width_3)
-xline(0,'-','LineWidth',0.5);
+plot(W0c(1:cross_indices,1), newtht(1:cross_indices)-2*pi,'r','LineWidth', 0.5)
+xline(threshold,'--','LineWidth',1.5);
 xlabel('$\tau$','Interpreter','latex')
 ylabel('$\nu(\tau)$','Interpreter','latex')
-axis([0 1 -18 20])
-set(gca, 'YAxisLocation', 'right', 'YColor', 'k', 'FontSize', 20, 'TickLabelInterpreter', 'latex')
+set(gca, 'YAxisLocation', 'right')  % This moves the y-axis to the right
+%xlim([0 1])
+axis([0 1 -8 20])
+set(gca,'FontSize',20,'TickLabelInterpreter','latex')
 hold off
 
-ax = gca;
-ax.XAxis.TickLength = [0.015 0.015];
-ax.YAxis.TickLength = [0.015 0.015];
-set(gcf, 'Color', 'w')
 end
 
-% === Overlay the final lambda curve on top ===
-figure(1)
-subplot(1,2,2); hold on;
-
-% Sort to ensure tau is increasing (ode15s integrates backward)
-[x_sorted, idx] = sort(W0c_last(:,1));
-y_sorted = newtht_last(idx) - 2*pi;
-
-% Thick black overlay
-plot(x_sorted, y_sorted, 'k', 'LineWidth', 3);
-drawnow;
-
-%print(1, '-djpeg', '-r300', 'JL_combined1.jpg')
+print(1, '-djpeg', '-r300', 'JL_combined2.jpg')
