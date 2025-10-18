@@ -63,11 +63,6 @@ for i=1:nmax
     sol = bvp4c(solit_sys_handle, solit_bc_handle, sol, options);
 end
 
-%% Plot soliton
-%
-% plot(sol.x, sol.y(1,:));
-% axis([0 10 0 inf]);
-
 %% Vectorize the soliton so that it may be made into a function.
 %
 r = sol.x';
@@ -199,5 +194,3 @@ set(gca,'FontSize',20,'TickLabelInterpreter','latex')
 hold off
 
 end
-
-%print(1, '-djpeg', '-r300', 'JL1.jpg')
