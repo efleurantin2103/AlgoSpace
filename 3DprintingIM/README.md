@@ -30,7 +30,7 @@ Given the highly nonlinear nature of specific dynamical systems, we employ a div
     - Cura
   - Custom numerical algorithms
 
-## Current Progress
+<!--## Current Progress
 
 ### Phase 1 - Foundation ✓
 - [x] Mathematical framework established
@@ -45,7 +45,7 @@ Given the highly nonlinear nature of specific dynamical systems, we employ a div
 ### Phase 3 - Implementation ✓
 - [X] Publication preparation
 - [X] Full system integration
-- [X] Documentation
+- [X] Documentation -->
 
 <div align="center">
   <i>Last updated: March 2025</i>
