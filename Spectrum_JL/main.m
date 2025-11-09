@@ -10,7 +10,6 @@ lambda = linspace(0.83,1,20);
 alpha=0.75;
 threshold = eps^(alpha);
 
-%%%%%%%%%%%%%%%%%%%%%%%%
 %% BEGIN COMPUTE SOLITON
 %
 
@@ -64,16 +63,10 @@ for i=1:nmax
     sol = bvp4c(solit_sys_handle, solit_bc_handle, sol, options);
 end
 
-%% Plot soliton
-%
-% plot(sol.x, sol.y(1,:));
-% axis([0 10 0 inf]);
-
 %% Vectorize the soliton so that it may be made into a function.
 %
 r = sol.x';
 u = sol.y(1,:)';
-%return
 %% Clear all un-necessary values
 %
 clear amp0 solit_bc_jac_handle deltaxmax guessinit i;
@@ -115,10 +108,6 @@ x0 = Fp1 - scale*V1;
 options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0c] = ode15s('Vop2',[1E7 0], x0, options, flag, c, lambda(h), eps, r, u);
 
- % % Check immediately after integration
- %    fprintf('lambda(%d) = %.4f: tau range = [%.6f, %.6f], npoints = %d\n', ...
- %            h, lambda(h), W0c(1,1), W0c(end,1), length(W0c));
-
 cross_indices = find(diff(W0c(:,1) >= threshold) ~= 0);
 
 Q = cos(W0c(:,2));
@@ -142,14 +131,6 @@ EndP=abs(newtht(1)-newtht(end))
 % newtht(1)
 % newtht(end)
 jumptau =  round(abs((newtht(1)-newtht(end))/(2*pi)))
-
-% % Suppose theta is your phase trajectory
-% theta_unwrapped = unwrap(tht);        % make it continuous
-% turns = floor(theta_unwrapped/(2*pi));  % integer turns at each step
-% 
-% % Count how many times it increases
-% jumptau = max(turns) - min(turns)
-
 
 %plot(W0c(1:cross_indices,1), newtht(1:cross_indices),'r','LineWidth', 3) %plotting unwrap angle values
 plot(W0c(:,1), newtht(1:length(W0c)),'r','LineWidth', 3) %plotting unwrap angle values
