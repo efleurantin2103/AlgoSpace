@@ -9,10 +9,7 @@ kappa=0.65;%works fine, relationship to alpha
 threshold = eps^(kappa)/(1+eps^(kappa));
 threshold2 = eps^(kappa-1)/(1+eps^(kappa-1));
 
-%%%%%%%%%%%%%%%%%%%%%%%%
 %% BEGIN COMPUTE SOLITON
-%
-
 %% Set soliton amplitude guess "amp0", interval [x0,xmax0], and initial # of points in mesh "npts0"
 %
 amp0 = 4.3373876;
@@ -67,16 +64,13 @@ end
 %
 r = sol.x';
 u = sol.y(1,:)';
-%return
-%% Clear all un-necessary values
-%
+
 clear amp0 solit_bc_jac_handle deltaxmax guessinit i;
 clear solit_jac_handle nmax npts0 options S solit_bc_handle;
 clear solit_sys_handle x0 xmax0 xmax1 xmax xmesh sol;
 
 %% END COMPUTE SOLITON
 %
-%%%%%%%%%%%%%%%%%%%%%%%%
 
 eq2 = [1;0;0;0;0;0];%IC/Fp starting at sigma=0
 
