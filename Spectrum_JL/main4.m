@@ -12,9 +12,7 @@ alpha=0.75;
 threshold = eps^(alpha);
 threshold2 = 1-eps^(alpha);
 
-%%%%%%%%%%%%%%%%%%%%%%%%
 %% BEGIN COMPUTE SOLITON
-%
 
 %% Set soliton amplitude guess "amp0", interval [x0,xmax0], and initial # of points in mesh "npts0"
 %
@@ -70,7 +68,6 @@ end
 %
 r = sol.x';
 u = sol.y(1,:)';
-%return
 %% Clear all un-necessary values
 %
 clear amp0 solit_bc_jac_handle deltaxmax guessinit i;
@@ -78,8 +75,6 @@ clear solit_jac_handle nmax npts0 options S solit_bc_handle;
 clear solit_sys_handle x0 xmax0 xmax1 xmax xmesh sol;
 
 %% END COMPUTE SOLITON
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
 
 eq2 = [1;0;0;0;0;0];%IC/Fp starting at sigma=0
 
@@ -123,7 +118,6 @@ x0 = Fp1 - scale*V1;
 options=odeset('RelTol',1e-13,'AbsTol',1e-13);
 [t, W0c] = ode15s('Vop2',[0 -1E6], x0, options, flag, c, lambda(h), eps, r, u);
 
-
 x1 = eq2 + scale*xi_u;
 
 [t1, W0u2] = ode45('Vop',[t0,tmax0], x1, options, flag, c, lambda(h), eps, r, u);
@@ -164,7 +158,6 @@ tht2(i) = atan2(IM2(i),RE2(i));
 end
 xx2=t1;
 newtht2 = unwrap(tht2);%unwrapping angle values
-
 
 figure(1)
 set(gcf, 'Color', 'w', 'Position', [100, 100, 600, 400])
