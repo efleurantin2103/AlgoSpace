@@ -1,8 +1,6 @@
 clear all;
 format long;
 
-addpath('/Users/emmanuelfleurantin/Dropbox/Golovanich_SpectralTheory/Dmitro_Code/Overleaf_codes_E/Shooting_from_0')
-
 eps=0.1;
 c=-30;
 %lambda=0.998;
