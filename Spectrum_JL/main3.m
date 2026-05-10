@@ -2,7 +2,7 @@
 clear all;
 format long;
 
-addpath('/Users/emmanuelfleurantin/FOLDERNAMEHERE')
+addpath('/Users/emmanuelfleurantin/')
 
 eps=0.1;
 c=-30;
