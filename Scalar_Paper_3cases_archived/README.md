@@ -9,7 +9,6 @@ This folder contains **archived versions** of the Scalar Paper 3 Cases project. 
 - **DO NOT MODIFY** files in this archive folder
 - For current development, use the active project folder: `../Scalar_Paper_3cases/`
 - This archive serves as a backup and reference point
-- Original commit history is preserved in Git version control
 
 ---
 
