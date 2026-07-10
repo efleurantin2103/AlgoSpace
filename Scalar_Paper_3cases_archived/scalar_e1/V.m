@@ -1,5 +1,6 @@
 %% Potential V with magnitude constant c and dependet variable x
 %
+
 function f = V(c,x,eps)
 %f = c*(x^2)*exp(-x);
 %change x to x/(1-x)
